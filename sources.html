@@ -38,7 +38,7 @@
   document.getElementById('back').href='./?lang='+l;
   for(const id of ['back','title','intro','foot']) document.getElementById(id).textContent=words[id];
   try {
-    const response=await fetch('./baku-day.json?v=20261109k'); if(!response.ok) throw new Error('Data unavailable');
+    const response=await fetch('./baku-day.json?v=20261109l'); if(!response.ok) throw new Error('Data unavailable');
     const data=await response.json(), list=document.getElementById('list');
     for(const [index,[name,url]] of (data.meta?.sources || []).entries()) {
       const parsed=new URL(url); if(!['http:','https:'].includes(parsed.protocol)) continue;
