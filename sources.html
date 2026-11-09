@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#11151c">
+  <title>Yolda — Mənbələr</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;background:#11151c;color:#ecf4f1;font:15px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}main{width:min(720px,100%);margin:auto;padding:40px 24px 80px}a{color:#9ce8d4}h1{font-size:30px;line-height:1.2;margin:30px 0 8px}p{color:#bbc9c3}ul{list-style:none;padding:0;margin:28px 0}li{padding:12px 0;border-bottom:1px solid #ffffff20}li a{overflow-wrap:anywhere}small{color:#a0aea8}a:focus-visible{outline:2px solid #9ce8d4;outline-offset:4px}
+  </style>
+</head>
+<body><main><a id="back"></a><h1 id="title"></h1><p id="intro"></p><ul id="list"></ul><small id="foot"></small></main>
+<script type="module">
+  const language = new URLSearchParams(location.search).get('lang');
+  const l = ['az','ru','en'].includes(language) ? language : 'az';
+  const words = {
+    az:{back:'← Xəritəyə qayıt',title:'Mənbələr',intro:'Məlumatlar müxtəlif tarixli açıq mənbələrdən toplanıb. Marşrutların əhatəsi və aktuallığı mənbədən asılı olaraq dəyişir.',source:'Mənbə',foot:'Hərəkət və mövqelər modelləşdirilir; bu, canlı izləmə deyil.',error:'Mənbələri yükləmək mümkün olmadı.'},
+    ru:{back:'← Вернуться к карте',title:'Источники',intro:'Данные собраны из открытых источников разных дат. Покрытие и актуальность маршрутов зависят от источника.',source:'Источник',foot:'Движение и положения транспорта смоделированы; это не живое отслеживание.',error:'Не удалось загрузить источники.'},
+    en:{back:'← Back to map',title:'Sources',intro:'The data comes from public sources from different dates. Route coverage and currency vary by source.',source:'Source',foot:'Movement and positions are modelled; this is not live tracking.',error:'Could not load the sources.'}
+  }[l];
+  document.documentElement.lang=l; document.title='Yolda — '+words.title;
+  document.getElementById('back').href=l+'/';
+  for(const id of ['back','title','intro','foot']) document.getElementById(id).textContent=words[id];
+  try {
+    const response=await fetch('./baku-day.json?v=20261109i'); if(!response.ok) throw new Error('Data unavailable');
+    const data=await response.json(), list=document.getElementById('list');
+    for(const [index,[name,url]] of (data.meta?.sources || []).entries()) {
+      const parsed=new URL(url); if(!['http:','https:'].includes(parsed.protocol)) continue;
+      const item=document.createElement('li'),link=document.createElement('a');
+      link.href=parsed.href;link.target='_blank';link.rel='noopener noreferrer';
+      link.textContent=l==='ru'||!/[А-Яа-яЁё]/.test(name) ? name : `${words.source} ${index+1} · ${parsed.hostname}`;
+      item.appendChild(link);list.appendChild(item);
+    }
+  } catch {document.getElementById('list').textContent=words.error;}
+</script></body></html>
