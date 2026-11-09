@@ -18,17 +18,33 @@
     ru:{back:'← Вернуться к карте',title:'Источники',intro:'Данные собраны из открытых источников разных дат. Покрытие и актуальность маршрутов зависят от источника.',source:'Источник',foot:'Движение и положения транспорта смоделированы; это не живое отслеживание.',error:'Не удалось загрузить источники.'},
     en:{back:'← Back to map',title:'Sources',intro:'The data comes from public sources from different dates. Route coverage and currency vary by source.',source:'Source',foot:'Movement and positions are modelled; this is not live tracking.',error:'Could not load the sources.'}
   }[l];
+  const translatedSources = {
+    en:[
+      'AYNA route maps','Ismat Samadov: research and GTFS model','Ismat Samadov: research repository','OpenStreetMap data and copyright','OpenFreeMap basemap','OpenMapTiles map data',
+      'Baku Metro: network and service intervals','Baku Metro: intervals, 6 November 2026','Baku Metro development plan','Azerbaijan land boundary · OpenStreetMap','H1 Airport Express','Baku funicular opening hours','transit-reels player',
+      'Ganja route 4: AYNA announcement','Ganja route 4: geometry and stops · OpenStreetMap','Ganja routes and stops · CityCard','Nakhchivan route 3: route description','Nakhchivan route 3: geometry and stops · OpenStreetMap','Nakhchivan: AYNA tender, 2026','Nakhchivan BakuBus routes, August 2026','Nakhchivan route 1: geometry · OpenStreetMap','Ganja BakuBus service hours, 2025',
+      'Baku bus terminal: published departures, snapshot of 9 November 2026','AYNA bus station directory','OSM / OSRM road geometry and routing','AYNA: Baku–Aghdam via Quzanlı','AYNA: Baku–Lachin via Aghalı','AYNA: Baku–Nakhchivan service suspension, February 2026','AYNA: regional route tender departures, June 2026','AYNA: regional route tender departures, July 2026','AYNA: announced regional route tender winners','AYNA: Ganja–Gadabay tender winner',
+      'ADY: additional Baku–Tbilisi trains, November 2026','ADY: commuter train schedule, September 2026','ADY: Ganja–Gabala','Baku–Gazakh and Baku–Gabala train schedules, October 2026','Railway lines and stations · OpenStreetMap','ADY: Baku–Balakan service resumption announced for 20 November 2026','AYNA bus terminals and stations','Mingachevir city route 5: AYNA tender, 2026'
+    ],
+    az:[
+      'AYNA marşrut xəritələri','İsmət Səmədov: tədqiqat və GTFS modeli','İsmət Səmədov: tədqiqat repozitoriyası','OpenStreetMap məlumatları və müəllif hüquqları','OpenFreeMap xəritə əsası','OpenMapTiles xəritə məlumatları',
+      'Bakı Metropoliteni: xətlər və hərəkət intervalları','Bakı Metropoliteni: intervallar, 6 noyabr 2026','Metronun inkişaf planı','Azərbaycanın quru sərhədi · OpenStreetMap','H1 Airport Express','Bakı funikulyorunun iş saatları','transit-reels pleyeri',
+      'Gəncə, 4 nömrəli marşrut: AYNA elanı','Gəncə, 4 nömrəli marşrut və dayanacaqlar · OpenStreetMap','Gəncə marşrutları və dayanacaqları · CityCard','Naxçıvan, 3 nömrəli marşrut: istiqamətlər','Naxçıvan, 3 nömrəli marşrut və dayanacaqlar · OpenStreetMap','Naxçıvan: AYNA müsabiqəsi, 2026','Naxçıvan BakuBus marşrutları, avqust 2026','Naxçıvan, 1 nömrəli marşrut · OpenStreetMap','Gəncə BakuBus iş saatları, 2025',
+      'Bakı Avtovağzalı: reyslər, 9 noyabr 2026 tarixli məlumat','AYNA avtovağzal və avtostansiyaları','OSM / OSRM yol şəbəkəsi və marşrutlaşdırma','AYNA: Bakı–Ağdam, Quzanlıdan keçməklə','AYNA: Bakı–Laçın, Ağalıdan keçməklə','AYNA: Bakı–Naxçıvan reyslərinin dayandırılması, fevral 2026','AYNA: regional marşrutların müsabiqə reysləri, iyun 2026','AYNA: regional marşrutların müsabiqə reysləri, iyul 2026','AYNA: regional marşrut müsabiqələrinin qalibləri','AYNA: Gəncə–Gədəbəy müsabiqəsinin qalibi',
+      'ADY: əlavə Bakı–Tbilisi qatarları, noyabr 2026','ADY: şəhərətrafı qatar cədvəli, sentyabr 2026','ADY: Gəncə–Qəbələ','Bakı–Qazax və Bakı–Qəbələ qatar cədvəlləri, oktyabr 2026','Dəmir yolu xətləri və stansiyaları · OpenStreetMap','ADY: Bakı–Balakən reysinin 20 noyabr 2026-dan bərpası','AYNA avtovağzal və avtostansiyaları','Mingəçevir, 5 nömrəli şəhər marşrutu: AYNA müsabiqəsi, 2026'
+    ]
+  };
   document.documentElement.lang=l; document.title='Yolda — '+words.title;
-  document.getElementById('back').href=l+'/';
+  document.getElementById('back').href='./?lang='+l;
   for(const id of ['back','title','intro','foot']) document.getElementById(id).textContent=words[id];
   try {
-    const response=await fetch('./baku-day.json?v=20261109i'); if(!response.ok) throw new Error('Data unavailable');
+    const response=await fetch('./baku-day.json?v=20261109j'); if(!response.ok) throw new Error('Data unavailable');
     const data=await response.json(), list=document.getElementById('list');
     for(const [index,[name,url]] of (data.meta?.sources || []).entries()) {
       const parsed=new URL(url); if(!['http:','https:'].includes(parsed.protocol)) continue;
       const item=document.createElement('li'),link=document.createElement('a');
       link.href=parsed.href;link.target='_blank';link.rel='noopener noreferrer';
-      link.textContent=l==='ru'||!/[А-Яа-яЁё]/.test(name) ? name : `${words.source} ${index+1} · ${parsed.hostname}`;
+      link.textContent=l==='ru' ? name : (translatedSources[l][index] || name);
       item.appendChild(link);list.appendChild(item);
     }
   } catch {document.getElementById('list').textContent=words.error;}
