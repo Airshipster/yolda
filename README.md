@@ -2,7 +2,7 @@
 
 Yolda is an interactive model of public transport in Azerbaijan over the course of a day. Vehicle positions and most service intervals are estimated. It is not live GPS tracking or a journey planner.
 
-[Open Yolda](https://airshipster.github.io/yolda/) · [Sources and attribution](https://airshipster.github.io/yolda/sources.html?lang=en)
+[Open Yolda](https://airshipster.github.io/yolda/) · [Sources and attribution](SOURCES.md)
 
 The dataset was compiled on **9 November 2026**. Its sources have different publication dates and may be incomplete or out of date. Routes serving different days are combined into one model day; available day-of-service information is retained in the data.
 
