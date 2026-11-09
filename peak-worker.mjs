@@ -1,4 +1,4 @@
-import { buildSchedule, peakVisibleAt } from "./schedule.mjs?v=20261109i";
+import { buildSchedule, peakVisibleAt } from "./schedule.mjs?v=20261109j";
 
 self.onmessage = event => {
     try {
