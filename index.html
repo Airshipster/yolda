@@ -15,12 +15,12 @@
   <main id="player" aria-label="Azərbaycanın ictimai nəqliyyat xəritəsi"></main>
   <noscript>Xəritədən istifadə üçün JavaScript-i aktiv edin.</noscript>
   <script type="module">
-    import {mount} from './player.js?v=20261109l';
+    import {mount} from './player.js?v=20261109m';
     const player = document.getElementById('player');
     const requested = new URLSearchParams(location.search).get('lang');
     const language = ['az','ru','en'].includes(requested) ? requested : 'az';
     document.documentElement.lang = language;
-    mount(player, './baku-day.json?v=20261109l', {language,localeUrls:true}).catch(error => {
+    mount(player, './baku-day.json?v=20261109m', {language,localeUrls:true}).catch(error => {
       console.error(error);
       const message = document.createElement('p');
       message.id = 'failure';
