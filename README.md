@@ -16,4 +16,4 @@ The dataset was compiled on **9 November 2026**. Its sources have different publ
 
 The city selector includes places with mapped services, including intercity routes. This does not imply that local bus coverage is complete.
 
-The transit player is adapted from Aaron Becker's transit-reels project; the original MIT license is preserved in [LICENSE](LICENSE). Maps use OpenStreetMap data, OpenFreeMap and OpenMapTiles; other source terms may also apply.
+The transit player is adapted from Aaron Becker's transit-reels project; the original MIT license is preserved in [LICENSE](LICENSE). Maps use OpenStreetMap data, OpenFreeMap and OpenMapTiles; other source terms may also apply. The favicon uses the [GitHub Octicons mark](https://github.com/primer/octicons/blob/main/icons/mark-github-24.svg) under the [MIT license](OCTICONS-LICENSE).
