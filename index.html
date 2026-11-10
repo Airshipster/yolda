@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png?v=20261110g">
-  <link rel="icon" type="image/svg+xml" href="./favicon.svg?v=20261110g">
-  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=20261110g">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png?v=20261110h">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg?v=20261110h">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=20261110h">
   <meta name="theme-color" content="#11151c">
   <meta name="description" content="Azərbaycanın ictimai nəqliyyatının modelləşdirilmiş hərəkət xəritəsi.">
   <title>Yolda — ictimai nəqliyyat xəritəsi</title>
@@ -18,12 +18,12 @@
   <main id="player" aria-label="Azərbaycanın ictimai nəqliyyat xəritəsi"></main>
   <noscript>Xəritədən istifadə üçün JavaScript-i aktiv edin.</noscript>
   <script type="module">
-    import {mount} from './player.js?v=20261110g';
+    import {mount} from './player.js?v=20261110h';
     const player = document.getElementById('player');
     const requested = new URLSearchParams(location.search).get('lang');
     const language = ['az','ru','en'].includes(requested) ? requested : 'az';
     document.documentElement.lang = language;
-    mount(player, './baku-day.json?v=20261110g', {language,localeUrls:true}).catch(error => {
+    mount(player, './baku-day.json?v=20261110h', {language,localeUrls:true}).catch(error => {
       console.error(error);
       const message = document.createElement('p');
       message.id = 'failure';
