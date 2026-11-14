@@ -2,7 +2,7 @@
 
 Yolda is an interactive model of public transport in Azerbaijan over the course of a day. Vehicle positions and most service intervals are estimated. It is not live GPS tracking or a journey planner.
 
-[Open Yolda](https://airshipster.github.io/yolda/) · [Sources and attribution](SOURCES.md)
+[Open Yolda](https://airshipster.github.io/yolda/) · [Sources and attribution](SOURCES.md) · [Rights and reuse](RIGHTS.md)
 
 The dataset was compiled on **9 November 2026**. Its sources have different publication dates and may be incomplete or out of date. Routes serving different days are combined into one model day; available day-of-service information is retained in the data.
 
@@ -16,4 +16,6 @@ The dataset was compiled on **9 November 2026**. Its sources have different publ
 
 The city selector includes places with mapped services, including intercity routes. This does not imply that local bus coverage is complete.
 
-The transit player is adapted from Aaron Becker's transit-reels project; the original MIT license is preserved in [LICENSE](LICENSE). Maps use OpenStreetMap data, OpenFreeMap and OpenMapTiles; other source terms may also apply. The favicon uses the [GitHub Octicons mark](https://github.com/primer/octicons/blob/main/icons/mark-github-24.svg) under the [MIT license](OCTICONS-LICENSE).
+The transit player is adapted from Aaron Becker's transit-reels project. Its MIT license text is preserved at [THIRD_PARTY_LICENSES/transit-reels-MIT.txt](THIRD_PARTY_LICENSES/transit-reels-MIT.txt). Earlier public revisions carried that MIT notice at the repository root; this notice does not revoke permissions already granted for those versions. Read [LICENSE](LICENSE) and [RIGHTS.md](RIGHTS.md) for the current rights notice and its limits.
+
+Maps use OpenStreetMap data, OpenFreeMap and OpenMapTiles; other source terms may also apply. The favicon uses the [GitHub Octicons mark](https://github.com/primer/octicons/blob/main/icons/mark-github-24.svg) under the [MIT license](OCTICONS-LICENSE).
